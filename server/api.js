@@ -1,10 +1,12 @@
 const express = require("express");
 const apiRouter = express.Router();
-const database = require("./db.js");
+const minionRouter = require('./minions')
+const ideasRouter = require('./ideas')
+const meetingRouter = require('./meetings')
 
-apiRouter.get("/minions", (_req, res, next) => {
-  res.status(200).send(database.allMinions);
-  next();
-});
+
+apiRouter.use('/minions', minionRouter);
+apiRouter.use('/ideas', ideasRouter);
+apiRouter.use('/meetings', meetingRouter);
 
 module.exports = apiRouter;
